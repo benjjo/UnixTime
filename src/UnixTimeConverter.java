@@ -40,12 +40,12 @@ public class UnixTimeConverter {
 
     /**
      * Prompts the user to enter a valid unix time code.
+     * Returns true if the input was successful.
      */
     private boolean getUnixTimeFromTheUser() {
         try {
-            int unixSeconds = Integer.parseInt(JOptionPane.showInputDialog(null,
-                    "Enter the Unix Time Code:","1577836800"));
-            this.setEpochSeconds(unixSeconds);
+            this.setEpochSeconds(Integer.parseInt(JOptionPane.showInputDialog(null,
+                    "Enter the Unix Time Code:","1577833200")));
             return true;
         } catch (NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Incorrect value format entered.");
