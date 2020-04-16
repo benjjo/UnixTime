@@ -31,11 +31,12 @@ public class DetailsPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String unixCode = unixCodeField.getText();
-                //String occupation = occupationField.getText();
+
                 try {
                     UnixTimeConverter.setEpochSeconds(Integer.parseInt(unixCode));
                 } catch (NumberFormatException anException){
-                    JOptionPane.showMessageDialog(null, "Incorrect value format entered." + anException);
+                    JOptionPane.showMessageDialog(null, "Incorrect value format entered. Try using numbers only.");
+                    unixCode = "Unix time began";
                 }
                 String convertedTime = String.valueOf(UnixTimeConverter.getEpoch().getTime());
                 String text = unixCode + ": " + convertedTime + "\n";
