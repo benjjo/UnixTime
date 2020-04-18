@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import javax.swing.event.EventListenerList;
 
 public class DetailsPanel extends JPanel {
@@ -20,17 +21,15 @@ public class DetailsPanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder("Control Panel"));
 
         JLabel unixLabel = new JLabel("Enter a Unix Code: ");
-        //JLabel occupationLabel = new JLabel("Occupation");
-
-        final JTextField unixCodeField = new JTextField(10);
-        //final JTextField occupationField = new JTextField(10);
+        int now = (int) (Calendar.getInstance().getTimeInMillis() / 1000);
+        final JTextField unixCodeField = new JTextField(String.valueOf(now), 10);
 
         JButton addBtn = new JButton("Calculate Date");
 
         addBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String unixCode = unixCodeField.getText();
+                String unixCode = unixCodeField.getText().trim();
 
                 try {
                     UnixTimeConverter.setEpochSeconds(Integer.parseInt(unixCode));
