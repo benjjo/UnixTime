@@ -23,8 +23,8 @@ public class UnixTimeConverter {
         SwingUtilities.invokeLater(new Runnable() {  // Creates a new swing thread so Swing can manage the thread.
             @Override
             public void run() {
-                JFrame frame = new MainFrame("Unix Time Conversionator");
-                frame.setSize(550, 300); // sets the size of the frame
+                JFrame frame = new MainFrame("Unix Time");
+                frame.setSize(265, 150); // sets the size of the frame
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets up JFrame to close when cancelled.
                 frame.setVisible(true); // Draws the frame to the screen
             }

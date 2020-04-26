@@ -12,10 +12,10 @@ public class MainFrame extends JFrame {
         setLayout(new BorderLayout()); // BorderLayout just lets you add components to top, left and centre of the frame.
 
         // Create Swing components
-        final JTextArea textArea = new JTextArea();  // Big area that you can write text.
+//        final JTextArea textArea = new JTextArea();  // Big area that you can write text.
 
         detailsPanel = new DetailsPanel();
-
+/*
         detailsPanel.addDetailListener(new DetailListener(){
             public void detailEventOccurred(DetailEvent event) {
                 String text = event.getText();
@@ -24,10 +24,12 @@ public class MainFrame extends JFrame {
             }
         });
 
+ */
+
         // Add Swing components to the content pane
         Container c = getContentPane();
 
-        c.add(textArea, BorderLayout.CENTER);
+        //c.add(textArea, BorderLayout.CENTER);
         c.add(detailsPanel, BorderLayout.WEST);
     }
 }

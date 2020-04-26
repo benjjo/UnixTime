@@ -7,12 +7,11 @@ import javax.swing.event.EventListenerList;
 
 public class DetailsPanel extends JPanel {
 
+    private EventListenerList listenerList = new EventListenerList();
+
     /**
      * Sets up the details panel on the left, with a lovely wee border.
      */
-
-    private EventListenerList listenerList = new EventListenerList();
-
     public DetailsPanel() {
         Dimension size = getPreferredSize();
         size.width = 250;
@@ -21,6 +20,7 @@ public class DetailsPanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder("Control Panel"));
 
         JLabel unixLabel = new JLabel("Enter a Unix Code: ");
+        JLabel dateLabel = new JLabel();
         int now = (int) (Calendar.getInstance().getTimeInMillis() / 1000);
         final JTextField unixCodeField = new JTextField(String.valueOf(now), 10);
 
@@ -35,12 +35,21 @@ public class DetailsPanel extends JPanel {
                     UnixTimeConverter.setEpochSeconds(Integer.parseInt(unixCode));
                 } catch (NumberFormatException anException){
                     JOptionPane.showMessageDialog(null, "Incorrect value format entered. Try using numbers only.");
-                    unixCode = "Unix time began";
+                    //unixCode = "Unix time began";
                 }
                 String convertedTime = String.valueOf(UnixTimeConverter.getEpoch().getTime());
-                String text = unixCode + ": " + convertedTime + "\n";
+                //String text = convertedTime;
 
-                fireDetailEvent(new DetailEvent(this, text));
+                fireDetailEvent(new DetailEvent(this, convertedTime));
+            }
+        });
+
+        ////SETUP THE OUTPUT BOX////
+        addDetailListener(new DetailListener(){
+            public void detailEventOccurred(DetailEvent event) {
+                String text = event.getText();
+
+                dateLabel.setText(text);
             }
         });
 
@@ -64,13 +73,18 @@ public class DetailsPanel extends JPanel {
         gc.gridy = 0;
         add(unixCodeField, gc);
 
+        //// Output / button rows ////
+        gc.gridx = 0;
+        gc.gridwidth = 2;
 
-        //// Final Row ////
-        gc.weighty = 10;
-        gc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gc.gridx = 1;
+        gc.anchor = GridBagConstraints.BASELINE;
         gc.gridy = 2;
+        gc.weighty = 5;
         add(addBtn, gc);
+        gc.gridy = 3;
+        gc.weighty = 10;
+        add(dateLabel, gc);
+
     }
 
     public void fireDetailEvent(DetailEvent event) { // Clearly this is just some kind of wizardry.
