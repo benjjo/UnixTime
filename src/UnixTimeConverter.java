@@ -13,6 +13,7 @@ import javax.swing.*;
 public class UnixTimeConverter {
 
     public static Calendar scottishEpoch = Calendar.getInstance();
+    public static int timeOffset = 1;
 
     /**
      * Constructor to setup the scottishEpoch values. i.e. Midnight, 1st Jan 1970
@@ -24,7 +25,7 @@ public class UnixTimeConverter {
             @Override
             public void run() {
                 JFrame frame = new MainFrame("Unix Time");
-                frame.setSize(265, 150); // sets the size of the frame
+                frame.setSize(265, 220); // sets the size of the frame
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets up JFrame to close when cancelled.
                 frame.setVisible(true); // Draws the frame to the screen
             }
@@ -37,7 +38,7 @@ public class UnixTimeConverter {
     public static void reset(){
         scottishEpoch.set(Calendar.YEAR, 1970);
         scottishEpoch.set(Calendar.DAY_OF_YEAR, 1);
-        scottishEpoch.set(Calendar.HOUR_OF_DAY, 1);
+        scottishEpoch.set(Calendar.HOUR_OF_DAY, UnixTimeConverter.timeOffset);
         scottishEpoch.set(Calendar.MINUTE, 0);
         scottishEpoch.set(Calendar.SECOND, 0);
         scottishEpoch.set(Calendar.MILLISECOND, 0);
