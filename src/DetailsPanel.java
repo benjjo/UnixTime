@@ -9,8 +9,8 @@ import javax.swing.event.EventListenerList;
 public class DetailsPanel extends JPanel implements ActionListener {
 
     private EventListenerList listenerList = new EventListenerList();
-    private String scottTimeOffset = "+01:00 Scotland";
-    private String UTCTimeOffset = "0:00 UTC time    ";
+    private String scottTimeOffset = "+01:00 Scotland  ";
+    private String UTCTimeOffset = "  00:00 UTC time ";
 
     /**
      * Sets up the details panel on the left, with a lovely wee border.
