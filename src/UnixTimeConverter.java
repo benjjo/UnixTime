@@ -25,7 +25,7 @@ public class UnixTimeConverter {
             @Override
             public void run() {
                 JFrame frame = new MainFrame("Unix Time");
-                frame.setSize(265, 220); // sets the size of the frame
+                frame.setSize(282, 280); // sets the size of the frame
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets up JFrame to close when cancelled.
                 frame.setVisible(true); // Draws the frame to the screen
             }

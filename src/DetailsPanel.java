@@ -17,15 +17,16 @@ public class DetailsPanel extends JPanel implements ActionListener {
      */
     public DetailsPanel() {
         Dimension size = getPreferredSize();
-        size.width = 250;
+        size.width = 265;
+        size.height = 285;
         setPreferredSize(size);
 
         setBorder(BorderFactory.createTitledBorder("Control Panel"));
 
-        JLabel unixLabel = new JLabel("Enter a Unix Code: ");
         JLabel dateLabel = new JLabel();
+        JLabel unixLabel = new JLabel("Enter a Unix Code: ");
         int now = (int) (Calendar.getInstance().getTimeInMillis() / 1000);
-        final JTextField unixCodeField = new JTextField(String.valueOf(now), 10);
+        final JTextField unixCodeField = new JTextField(String.valueOf(now), 7);
 
         JButton addBtn = new JButton("Calculate Date");
 
@@ -73,46 +74,66 @@ public class DetailsPanel extends JPanel implements ActionListener {
         scottOffSetButton.addActionListener( this);
         UCTOffSetButton.addActionListener( this);
 
+        // SETUP THE IMAGE ICON AT THE TOP //
+        ImageIcon icon = createImageIcon("/icon.png", "Logo");
+        JLabel iconLabel = new JLabel(icon, JLabel.CENTER);
+
+        // SETUP GRIDBAGLAYOUT //
         setLayout(new GridBagLayout());
 
         GridBagConstraints gc = new GridBagConstraints();
 
-        //// First column ////
-        gc.anchor = GridBagConstraints.ABOVE_BASELINE;
+        // Logo setup //
+        gc.anchor = GridBagConstraints.ABOVE_BASELINE_LEADING;
         gc.weightx = 0.5;
         gc.weighty = 2;
-
         gc.gridx = 0;
         gc.gridy = 0;
         gc.gridwidth = 2;
-        add(UCTOffSetButton, gc);
+        add(iconLabel, gc);
+
+        gc.anchor = GridBagConstraints.ABOVE_BASELINE;
+        gc.weightx = 0.5;
+        gc.weighty = 0.5;
         gc.gridy = 1;
+        add(UCTOffSetButton, gc);
+        gc.gridy = 2;
         add(scottOffSetButton, gc);
 
-        gc.weighty = 7;
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.gridy = 3;
         gc.gridwidth = 1;
-        gc.gridy = 2;
-
         add(unixLabel, gc);
 
         //// Second column ////
         gc.anchor = GridBagConstraints.LINE_START;
         gc.gridx = 1;
-        gc.gridy = 2;
         add(unixCodeField, gc);
 
-        //// Output / button rows ////
+        //// button rows ////
         gc.gridx = 0;
         gc.gridwidth = 2;
 
         gc.anchor = GridBagConstraints.BASELINE;
-        gc.gridy = 3;
-        gc.weighty = 5;
-        add(addBtn, gc);
         gc.gridy = 4;
+        gc.weighty = 0.5;
+        add(addBtn, gc);
+
+        gc.anchor = GridBagConstraints.BELOW_BASELINE;
+        gc.gridy = 5;
         gc.weighty = 10;
         add(dateLabel, gc);
 
+    }
+
+    private ImageIcon createImageIcon(String path, String description) {
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL, description);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
     }
 
     public void fireDetailEvent(DetailEvent event) { // Clearly this is just some kind of wizardry.
