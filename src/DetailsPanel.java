@@ -26,7 +26,7 @@ public class DetailsPanel extends JPanel implements ActionListener {
         JLabel dateLabel = new JLabel();
         JLabel unixLabel = new JLabel("Enter a Unix Code: ");
         int now = (int) (Calendar.getInstance().getTimeInMillis() / 1000);
-        final JTextField unixCodeField = new JTextField(String.valueOf(now), 7);
+        final JTextField unixCodeField = new JTextField(String.valueOf(now), 9);
 
         JButton addBtn = new JButton("Calculate Date");
 
@@ -78,13 +78,13 @@ public class DetailsPanel extends JPanel implements ActionListener {
         ImageIcon icon = createImageIcon("/icon.png", "Logo");
         JLabel iconLabel = new JLabel(icon, JLabel.CENTER);
 
-        // SETUP GRIDBAGLAYOUT //
+        // SETUP GRID-BAG-LAYOUT //
         setLayout(new GridBagLayout());
 
         GridBagConstraints gc = new GridBagConstraints();
 
         // Logo setup //
-        gc.anchor = GridBagConstraints.ABOVE_BASELINE_LEADING;
+        gc.anchor = GridBagConstraints.ABOVE_BASELINE;
         gc.weightx = 0.5;
         gc.weighty = 2;
         gc.gridx = 0;

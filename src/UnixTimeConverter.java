@@ -1,5 +1,9 @@
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.util.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
@@ -27,6 +31,13 @@ public class UnixTimeConverter {
                 JFrame frame = new MainFrame("Unix Time");
                 frame.setSize(282, 280); // sets the size of the frame
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets up JFrame to close when cancelled.
+                try {
+                    URL resource = frame.getClass().getResource("/clockIcon.png");
+                    BufferedImage image = ImageIO.read(resource);
+                    frame.setIconImage(image);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 frame.setVisible(true); // Draws the frame to the screen
             }
         });
